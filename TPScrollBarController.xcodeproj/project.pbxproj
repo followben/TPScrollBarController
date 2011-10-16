@@ -13,6 +13,9 @@
 		9FFD3D76144AE7EA009AE40F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9FFD3D74144AE7EA009AE40F /* InfoPlist.strings */; };
 		9FFD3D78144AE7EA009AE40F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFD3D77144AE7EA009AE40F /* main.m */; };
 		9FFD3D7C144AE7EA009AE40F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFD3D7B144AE7EA009AE40F /* AppDelegate.m */; };
+		9FFD3D84144AE841009AE40F /* TPScrollBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFD3D83144AE841009AE40F /* TPScrollBarController.m */; };
+		9FFD3D89144B0954009AE40F /* TestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFD3D87144B0954009AE40F /* TestController.m */; };
+		9FFD3D8A144B0954009AE40F /* TestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FFD3D88144B0954009AE40F /* TestController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +23,18 @@
 		9FFD3D6B144AE7EA009AE40F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9FFD3D6D144AE7EA009AE40F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9FFD3D6F144AE7EA009AE40F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		9FFD3D73144AE7EA009AE40F /* TPScrollBarController-Info.plist */ = {isa = PBXFileReference; path = "TPScrollBarController-Info.plist"; sourceTree = "<group>"; };
+		9FFD3D73144AE7EA009AE40F /* TPScrollBarController-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TPScrollBarController-Info.plist"; sourceTree = "<group>"; };
 		9FFD3D75144AE7EA009AE40F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9FFD3D77144AE7EA009AE40F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9FFD3D79144AE7EA009AE40F /* TPScrollBarController-Prefix.pch */ = {isa = PBXFileReference; path = "TPScrollBarController-Prefix.pch"; sourceTree = "<group>"; };
-		9FFD3D7A144AE7EA009AE40F /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		9FFD3D79144AE7EA009AE40F /* TPScrollBarController-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TPScrollBarController-Prefix.pch"; sourceTree = "<group>"; };
+		9FFD3D7A144AE7EA009AE40F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9FFD3D7B144AE7EA009AE40F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9FFD3D82144AE841009AE40F /* TPScrollBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPScrollBarController.h; sourceTree = "<group>"; };
+		9FFD3D83144AE841009AE40F /* TPScrollBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPScrollBarController.m; sourceTree = "<group>"; };
+		9FFD3D85144AF6E6009AE40F /* TPScrollBarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPScrollBarDelegate.h; sourceTree = "<group>"; };
+		9FFD3D86144B0954009AE40F /* TestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestController.h; sourceTree = "<group>"; };
+		9FFD3D87144B0954009AE40F /* TestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestController.m; sourceTree = "<group>"; };
+		9FFD3D88144B0954009AE40F /* TestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +83,13 @@
 			children = (
 				9FFD3D7A144AE7EA009AE40F /* AppDelegate.h */,
 				9FFD3D7B144AE7EA009AE40F /* AppDelegate.m */,
+				9FFD3D85144AF6E6009AE40F /* TPScrollBarDelegate.h */,
+				9FFD3D82144AE841009AE40F /* TPScrollBarController.h */,
+				9FFD3D83144AE841009AE40F /* TPScrollBarController.m */,
 				9FFD3D72144AE7EA009AE40F /* Supporting Files */,
+				9FFD3D86144B0954009AE40F /* TestController.h */,
+				9FFD3D87144B0954009AE40F /* TestController.m */,
+				9FFD3D88144B0954009AE40F /* TestController.xib */,
 			);
 			path = TPScrollBarController;
 			sourceTree = "<group>";
@@ -141,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FFD3D76144AE7EA009AE40F /* InfoPlist.strings in Resources */,
+				9FFD3D8A144B0954009AE40F /* TestController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +169,8 @@
 			files = (
 				9FFD3D78144AE7EA009AE40F /* main.m in Sources */,
 				9FFD3D7C144AE7EA009AE40F /* AppDelegate.m in Sources */,
+				9FFD3D84144AE841009AE40F /* TPScrollBarController.m in Sources */,
+				9FFD3D89144B0954009AE40F /* TestController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

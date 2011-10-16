@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "TPScrollBarController.h"
+#import "TestController.h"
 
 @implementation AppDelegate
 
@@ -15,9 +17,42 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+
+    TestController *c1 = [[TestController alloc] init];
+    c1.label.text = @"Controller 1";
+    TestController *c2 = [[TestController alloc] init];
+    c1.label.text = @"Controller 2";
+    
+    CGRect frame = CGRectMake(0, 0, 100, 50);
+    
+    UIButton *b1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [b1 setFrame:frame];
+    [b1 setTitle:@"#1 Purple" forState:UIControlStateNormal];
+    [b1 addTarget:c1 action:@selector(toggleMePurple) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *b2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [b2 setFrame:frame];
+    [b2 setTitle:@"#1 Orange" forState:UIControlStateNormal];
+    [b2 addTarget:c1 action:@selector(toggleMeOrange) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *b3 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [b3 setFrame:frame];
+    [b3 setTitle:@"#2 Purple" forState:UIControlStateNormal];
+    [b3 addTarget:c2 action:@selector(toggleMePurple) forControlEvents:UIControlEventTouchUpInside];
+    
+    NSSet *viewControllers = [NSSet setWithObjects:c1, c2, nil];
+    NSArray *buttons = [NSArray arrayWithObjects:b1, b2, b3, nil];
+    NSArray *pages = [NSArray arrayWithObjects: [NSNumber numberWithInt:2],
+                                                [NSNumber numberWithInt:1],
+                                                [NSNumber numberWithInt:1], nil];
+    
+    TPScrollBarController *sbc = [[TPScrollBarController alloc] init];
+    [sbc setViewControllers:viewControllers WithBarButtons:buttons onScrollBarPages:pages];
+    
+    self.window.rootViewController = sbc;
+    
     [self.window makeKeyAndVisible];
+
     return YES;
 }
 
