@@ -1,6 +1,8 @@
 # TPScrollBarController
 
-### A custom container view controller for iOS5. Like UITabBarController, except the tab bar scrolls (yay!) and bar items are fully customisable UIButtons rather than UITabBarItems.
+A custom container view controller for iOS5.
+
+Like UITabBarController, except the tab bar scrolls (yay!) and bar items are fully customisable UIButtons (rather than UITabBarItems).
 
 ## Usage
 
