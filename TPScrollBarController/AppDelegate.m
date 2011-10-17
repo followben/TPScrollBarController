@@ -1,9 +1,8 @@
 //
 //  AppDelegate.m
-//  TPScrollBarController
+//  TPScrollBarControllerExample
 //
-//  Created by Ben Stovold on 16/10/2011.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Ben Stovold. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -18,11 +17,16 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    TestController *c1 = [[TestController alloc] init];
-    c1.title = @"Controller 1";
-    TestController *c2 = [[TestController alloc] init];
-    c2.title = @"Controller 2";
     
+    // Create two view controllers for the contentView.
+    TestController *c1 = [[TestController alloc] init];
+    TestController *c2 = [[TestController alloc] init];
+    
+    // Label them so we can see which one is displayed.
+    c1.title = @"View Controller 1";
+    c2.title = @"View Controller 2";
+    
+    // Now create some buttons and add one of the view controllers as a target.
     UIButton *b1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [b1 setFrame:CGRectMake(0, 0, 100, 50)];
     [b1 setTitle:@"#1 Purple" forState:UIControlStateNormal];
@@ -48,6 +52,7 @@
     [b4 setTitle:@"#2 Purple" forState:UIControlStateNormal];
     [b4 addTarget:c2 action:@selector(turnMePurple) forControlEvents:UIControlEventTouchUpInside];
     
+    // Setup the parameters for the scroll bar controller.
     NSSet *viewControllers = [NSSet setWithObjects:c1, c2, nil];
     NSArray *buttons = [NSArray arrayWithObjects:b1, b2, bmore, b3, b4, nil];
     NSArray *pages = [NSArray arrayWithObjects: [NSNumber numberWithInt:1],
@@ -56,14 +61,17 @@
                                                 [NSNumber numberWithInt:2],
                                                 [NSNumber numberWithInt:2], nil];
     
+    // Initialise and set the controllers, buttons, pages
     TPScrollBarController *sbc = [[TPScrollBarController alloc] init];
     [sbc setViewControllers:viewControllers WithBarButtons:buttons onScrollBarPages:pages];
+    
+    // Add an example delegate.
     [sbc setDelegate:c1];
     
+    // Assign TPScrollBarController as root.
     self.window.rootViewController = sbc;
     
     [self.window makeKeyAndVisible];
-
     return YES;
 }
 

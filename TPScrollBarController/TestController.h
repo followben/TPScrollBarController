@@ -1,14 +1,16 @@
 //
 //  TestController.h
-//  TPScrollBarController
+//  TPScrollBarControllerExample
 //
-//  Created by Ben Stovold on 16/10/2011.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Ben Stovold. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "TPScrollBarDelegate.h"
 
+// This is an example view controller for illustration purposes,
+// ie. it doesn't do anything fancy. Scroll bar delegate method just
+// writes to the log.
 @interface TestController : UIViewController <TPScrollBarDelegate> {
     
 @protected
