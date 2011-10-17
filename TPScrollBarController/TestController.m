@@ -65,29 +65,24 @@
 
 #pragma mark - Custom methods for sample
 
-- (void)toggleBackgroundColor:(UIColor *)color
+- (void)turnMePurple
 {
-    if ([self.view backgroundColor] == self.defaultColor) {
-        [self.view setBackgroundColor:color];
-    } else {
-        [self.view setBackgroundColor:self.defaultColor];
-    }
+    [self.view setBackgroundColor:[UIColor purpleColor]];
 }
 
-- (void)toggleMePurple
+- (void)turnMeOrange
 {
-    [self toggleBackgroundColor:[UIColor purpleColor]];
-}
-
-- (void)toggleMeOrange
-{
-    [self toggleBackgroundColor:[UIColor orangeColor]];
+    [self.view setBackgroundColor:[UIColor orangeColor]];
 }
 
 - (void)scrollBar:(id)scrollBarController DidTouchUpInsideBarButton:(UIButton *)barButton
 {
     NSLog(@"%@ fired scrollBarViewControllerDidSelectBarButton: %@", self.title, barButton);
-    [(TPScrollBarController *)scrollBarController selectScrollBarPage:2 animated:YES];
+}
+
+- (void)scrollToPageTwo
+{
+    [(TPScrollBarController *)self.parentViewController selectScrollBarPage:2 animated:YES];
 }
 
 @end

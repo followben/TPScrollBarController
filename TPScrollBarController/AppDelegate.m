@@ -23,27 +23,37 @@
     TestController *c2 = [[TestController alloc] init];
     c2.title = @"Controller 2";
     
-    CGRect frame = CGRectMake(0, 0, 100, 50);
-    
     UIButton *b1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [b1 setFrame:frame];
+    [b1 setFrame:CGRectMake(0, 0, 100, 50)];
     [b1 setTitle:@"#1 Purple" forState:UIControlStateNormal];
-    [b1 addTarget:c1 action:@selector(toggleMePurple) forControlEvents:UIControlEventTouchUpInside];
+    [b1 addTarget:c1 action:@selector(turnMePurple) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *b2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [b2 setFrame:frame];
+    [b2 setFrame:CGRectMake(0, 0, 100, 50)];
     [b2 setTitle:@"#1 Orange" forState:UIControlStateNormal];
-    [b2 addTarget:c1 action:@selector(toggleMeOrange) forControlEvents:UIControlEventTouchUpInside];
+    [b2 addTarget:c1 action:@selector(turnMeOrange) forControlEvents:UIControlEventTouchUpInside];
     
+    UIButton *bmore = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [bmore setFrame:CGRectMake(0, 0, 50, 50)];
+    [bmore setTitle:@">>" forState:UIControlStateNormal];
+    [bmore addTarget:c2 action:@selector(scrollToPageTwo) forControlEvents:UIControlEventTouchUpInside];
+
     UIButton *b3 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [b3 setFrame:frame];
-    [b3 setTitle:@"#2 Purple" forState:UIControlStateNormal];
-    [b3 addTarget:c2 action:@selector(toggleMePurple) forControlEvents:UIControlEventTouchUpInside];
+    [b3 setFrame:CGRectMake(0, 0, 100, 50)];
+    [b3 setTitle:@"#2 Orange" forState:UIControlStateNormal];
+    [b3 addTarget:c2 action:@selector(turnMeOrange) forControlEvents:UIControlEventTouchUpInside];
+
+    UIButton *b4 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [b4 setFrame:CGRectMake(0, 0, 100, 50)];
+    [b4 setTitle:@"#2 Purple" forState:UIControlStateNormal];
+    [b4 addTarget:c2 action:@selector(turnMePurple) forControlEvents:UIControlEventTouchUpInside];
     
     NSSet *viewControllers = [NSSet setWithObjects:c1, c2, nil];
-    NSArray *buttons = [NSArray arrayWithObjects:b1, b2, b3, nil];
+    NSArray *buttons = [NSArray arrayWithObjects:b1, b2, bmore, b3, b4, nil];
     NSArray *pages = [NSArray arrayWithObjects: [NSNumber numberWithInt:1],
                                                 [NSNumber numberWithInt:1],
+                                                [NSNumber numberWithInt:1],
+                                                [NSNumber numberWithInt:2],
                                                 [NSNumber numberWithInt:2], nil];
     
     TPScrollBarController *sbc = [[TPScrollBarController alloc] init];

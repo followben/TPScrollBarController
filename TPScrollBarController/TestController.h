@@ -18,7 +18,8 @@
 @property (nonatomic, weak) IBOutlet UILabel *label;
 @property (nonatomic, strong) UIColor *defaultColor;
 
-- (void)toggleMePurple;
-- (void)toggleMeOrange;
+- (void)turnMePurple;
+- (void)turnMeOrange;
+- (void)scrollToPageTwo;
 
 @end

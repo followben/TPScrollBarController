@@ -113,9 +113,10 @@ CGFloat         const   kScrollBarHeight = 88.f;
             WithBarButtons:(NSArray *)barButtons
           onScrollBarPages:(NSArray *)pageNumbers
 {
+    NSAssert([barButtons count] == [pageNumbers count], @"barButton and pageNumber arrays must contain the same number of objects");
     for (UIButton *barButton in barButtons) {
         NSAssert([[barButton allTargets] count] == 1, @"barButtons can only have one target");
-        NSAssert([[[[barButton allTargets] allObjects] objectAtIndex:0] isKindOfClass:[UIViewController class]], @"a barButton's target must be a UIViewController");
+        NSAssert([[[[barButton allTargets] allObjects] objectAtIndex:0] isKindOfClass:[UIViewController class]], @"barButton target must be a UIViewController");
     }
     for (NSNumber *pageNumber in pageNumbers) {
         NSAssert([pageNumber integerValue] > 0, @"pageNumbers must be greater than zero");
@@ -198,10 +199,14 @@ CGFloat         const   kScrollBarHeight = 88.f;
             widthOfButtonsOnThisPage = widthOfButtonsOnThisPage + barButton.frame.size.width;
         }];
         
+        NSAssert(widthOfButtonsOnThisPage < pageWidth, @"Can't fit barButtons on page %f", page);
+        
         NSUInteger numberOfButtonsOnThisPage = [buttonIndexSet count];
         
+        __block NSUInteger offset;
+        
         // Calculate how far to offset each button from the left of the last one.
-        NSUInteger offset = (pageWidth - widthOfButtonsOnThisPage) / (numberOfButtonsOnThisPage + 1);
+        offset = (pageWidth - widthOfButtonsOnThisPage) / (numberOfButtonsOnThisPage + 1);
         
         // Set the x position for the first button.
         __block NSUInteger xpos = offset + (pageWidth * (page.integerValue - 1));
@@ -219,7 +224,7 @@ CGFloat         const   kScrollBarHeight = 88.f;
             [self.scrollBar addSubview:barButton];
             
             // Calculate the x origin for the next pass through
-            xpos = xpos + barButton.frame.size.width + xpos;
+            xpos = xpos + barButton.frame.size.width + offset;
             
         }];
     }
