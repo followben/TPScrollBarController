@@ -7,7 +7,7 @@
 
 #import "AppDelegate.h"
 #import "TPScrollBarController.h"
-#import "TestController.h"
+#import "ContentViewController.h"
 
 @implementation AppDelegate
 
@@ -19,8 +19,8 @@
 
     
     // Create two view controllers for the contentView.
-    TestController *c1 = [[TestController alloc] init];
-    TestController *c2 = [[TestController alloc] init];
+    ContentViewController *c1 = [[ContentViewController alloc] init];
+    ContentViewController *c2 = [[ContentViewController alloc] init];
     
     // Label them so we can see which one is displayed.
     c1.title = @"View Controller 1";

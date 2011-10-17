@@ -8,20 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		9F473409144C8E6D001A3CEA /* TPScrollBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F473407144C8E6D001A3CEA /* TPScrollBarController.m */; };
+		9F47340C144C9B83001A3CEA /* ContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F47340B144C9B82001A3CEA /* ContentViewController.xib */; };
 		9FFD3D6C144AE7EA009AE40F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFD3D6B144AE7EA009AE40F /* UIKit.framework */; };
 		9FFD3D6E144AE7EA009AE40F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFD3D6D144AE7EA009AE40F /* Foundation.framework */; };
 		9FFD3D70144AE7EA009AE40F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFD3D6F144AE7EA009AE40F /* CoreGraphics.framework */; };
 		9FFD3D76144AE7EA009AE40F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9FFD3D74144AE7EA009AE40F /* InfoPlist.strings */; };
 		9FFD3D78144AE7EA009AE40F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFD3D77144AE7EA009AE40F /* main.m */; };
 		9FFD3D7C144AE7EA009AE40F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFD3D7B144AE7EA009AE40F /* AppDelegate.m */; };
-		9FFD3D89144B0954009AE40F /* TestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFD3D87144B0954009AE40F /* TestController.m */; };
-		9FFD3D8A144B0954009AE40F /* TestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FFD3D88144B0954009AE40F /* TestController.xib */; };
+		9FFD3D89144B0954009AE40F /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFD3D87144B0954009AE40F /* ContentViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9F473406144C8E6D001A3CEA /* TPScrollBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPScrollBarController.h; sourceTree = SOURCE_ROOT; };
 		9F473407144C8E6D001A3CEA /* TPScrollBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPScrollBarController.m; sourceTree = SOURCE_ROOT; };
 		9F473408144C8E6D001A3CEA /* TPScrollBarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPScrollBarDelegate.h; sourceTree = SOURCE_ROOT; };
+		9F47340B144C9B82001A3CEA /* ContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentViewController.xib; sourceTree = "<group>"; };
 		9FFD3D67144AE7EA009AE40F /* TPScrollBarControllerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TPScrollBarControllerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FFD3D6B144AE7EA009AE40F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9FFD3D6D144AE7EA009AE40F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -32,9 +33,8 @@
 		9FFD3D79144AE7EA009AE40F /* TPScrollBarControllerExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TPScrollBarControllerExample-Prefix.pch"; sourceTree = "<group>"; };
 		9FFD3D7A144AE7EA009AE40F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9FFD3D7B144AE7EA009AE40F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9FFD3D86144B0954009AE40F /* TestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestController.h; sourceTree = "<group>"; };
-		9FFD3D87144B0954009AE40F /* TestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestController.m; sourceTree = "<group>"; };
-		9FFD3D88144B0954009AE40F /* TestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestController.xib; sourceTree = "<group>"; };
+		9FFD3D86144B0954009AE40F /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
+		9FFD3D87144B0954009AE40F /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +58,14 @@
 				9F473407144C8E6D001A3CEA /* TPScrollBarController.m */,
 				9F473408144C8E6D001A3CEA /* TPScrollBarDelegate.h */,
 			);
-			name = TPScrollBarController;
+			path = TPScrollBarController;
 			sourceTree = "<group>";
 		};
 		9FFD3D5C144AE7EA009AE40F = {
 			isa = PBXGroup;
 			children = (
 				9FFD3D71144AE7EA009AE40F /* TPScrollBarControllerExample */,
+				9F473405144C8DCE001A3CEA /* TPScrollBarController */,
 				9FFD3D6A144AE7EA009AE40F /* Frameworks */,
 				9FFD3D68144AE7EA009AE40F /* Products */,
 			);
@@ -91,12 +92,11 @@
 		9FFD3D71144AE7EA009AE40F /* TPScrollBarControllerExample */ = {
 			isa = PBXGroup;
 			children = (
-				9F473405144C8DCE001A3CEA /* TPScrollBarController */,
 				9FFD3D7A144AE7EA009AE40F /* AppDelegate.h */,
 				9FFD3D7B144AE7EA009AE40F /* AppDelegate.m */,
-				9FFD3D86144B0954009AE40F /* TestController.h */,
-				9FFD3D87144B0954009AE40F /* TestController.m */,
-				9FFD3D88144B0954009AE40F /* TestController.xib */,
+				9F47340B144C9B82001A3CEA /* ContentViewController.xib */,
+				9FFD3D86144B0954009AE40F /* ContentViewController.h */,
+				9FFD3D87144B0954009AE40F /* ContentViewController.m */,
 				9FFD3D72144AE7EA009AE40F /* Supporting Files */,
 			);
 			name = TPScrollBarControllerExample;
@@ -165,7 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FFD3D76144AE7EA009AE40F /* InfoPlist.strings in Resources */,
-				9FFD3D8A144B0954009AE40F /* TestController.xib in Resources */,
+				9F47340C144C9B83001A3CEA /* ContentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,7 +178,7 @@
 			files = (
 				9FFD3D78144AE7EA009AE40F /* main.m in Sources */,
 				9FFD3D7C144AE7EA009AE40F /* AppDelegate.m in Sources */,
-				9FFD3D89144B0954009AE40F /* TestController.m in Sources */,
+				9FFD3D89144B0954009AE40F /* ContentViewController.m in Sources */,
 				9F473409144C8E6D001A3CEA /* TPScrollBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
