@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TPScrollBarDelegate.h"
 
-@interface TestController : UIViewController {
+@interface TestController : UIViewController <TPScrollBarDelegate> {
     
 @protected
     __weak UILabel *label_;

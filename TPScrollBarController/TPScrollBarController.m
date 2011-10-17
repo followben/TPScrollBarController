@@ -21,6 +21,7 @@ CGFloat         const   kScrollBarHeight = 88.f;
 @property(nonatomic)  NSOrderedSet     *scrollBarPageSet;
 @property(nonatomic)  NSSet            *viewControllers;
 @property(nonatomic)  NSArray          *barButtons;
+@property(nonatomic)  NSUInteger       selectedScrollBarPage;
 
 @property(nonatomic, strong)  NSArray               *scrollBarPageArray;
 @property(nonatomic, strong)  NSArray               *registry;
@@ -31,6 +32,7 @@ CGFloat         const   kScrollBarHeight = 88.f;
 - (void)layoutBarButtons;
 - (void)registerBarButtonTargetsAsChildViewControllers;
 - (void)barButtonReceivedTouchDown:(UIButton *)sender;
+- (void)barButtonReceivedTouchUpInside:(UIButton *)sender;
 
 @end
 
@@ -85,14 +87,14 @@ CGFloat         const   kScrollBarHeight = 88.f;
     [self resizeScrollBarForNumberOfPages];
     [self layoutBarButtons];
     [self registerBarButtonTargetsAsChildViewControllers];
-    [self selectScrollBarPage:self.selectedScrollBarPage animated:YES];
+    self.selectedScrollBarPage = 1;
     [self.contentView addSubview:self.selectedViewController.view];
 }
 
 - (void)viewDidUnload
 {
-//    self.contentView = nil;
-//    self.scrollBar = nil;
+    self.scrollBar = nil;
+    self.contentView = nil;
     [super viewDidUnload];
 }
 
@@ -130,7 +132,11 @@ CGFloat         const   kScrollBarHeight = 88.f;
 
 - (void)selectScrollBarPage:(NSUInteger)pageNumber animated:(BOOL)animated
 {
-
+    NSUInteger pageWidth = [[UIScreen mainScreen] applicationFrame].size.width;
+    CGRect frame = self.scrollBar.bounds;
+    frame.origin.x = pageWidth * (pageNumber - 1);
+    [self.scrollBar scrollRectToVisible:frame animated:animated];
+    self.selectedScrollBarPage = pageNumber;
 }
 
 
@@ -168,7 +174,6 @@ CGFloat         const   kScrollBarHeight = 88.f;
 
 - (void)resizeScrollBarForNumberOfPages
 {
-    // Size the scroll bar
     CGSize size = self.scrollBar.frame.size;
     size.width = [[UIScreen mainScreen] applicationFrame].size.width * ((NSNumber *)[self.scrollBarPageSet lastObject]).integerValue;
     self.scrollBar.contentSize = size;
@@ -248,8 +253,9 @@ CGFloat         const   kScrollBarHeight = 88.f;
 
             }];
             
-            // Add self as a target for touch-down
+            // Add self as a target for touch events
             [barButton addTarget:self action:@selector(barButtonReceivedTouchDown:) forControlEvents:UIControlEventTouchDown];
+            [barButton addTarget:self action:@selector(barButtonReceivedTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
             
         }
     }
@@ -269,7 +275,12 @@ CGFloat         const   kScrollBarHeight = 88.f;
             self.selectedViewController = targetViewController;
         }];
     }
+}
 
+- (void)barButtonReceivedTouchUpInside:(UIButton *)sender
+{
+    // Inform delegate of button selection.
+    [self performSelectorOnDelegate:@selector(scrollBar:DidTouchUpInsideBarButton:) withObject:self andObject:sender];
 }
 
 @end

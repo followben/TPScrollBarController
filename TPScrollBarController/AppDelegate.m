@@ -48,6 +48,7 @@
     
     TPScrollBarController *sbc = [[TPScrollBarController alloc] init];
     [sbc setViewControllers:viewControllers WithBarButtons:buttons onScrollBarPages:pages];
+    [sbc setDelegate:c1];
     
     self.window.rootViewController = sbc;
     

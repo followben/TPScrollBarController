@@ -36,7 +36,7 @@
 @property(nonatomic, readonly)  NSOrderedSet     *scrollBarPageSet;
 @property(nonatomic, readonly)  NSSet            *viewControllers;
 @property(nonatomic, readonly)  NSArray          *barButtons;
-@property(nonatomic)            NSUInteger       selectedScrollBarPage;
+@property(nonatomic, readonly)  NSUInteger       selectedScrollBarPage;
 
 - (void)setViewControllers:(NSSet *)viewControllers
             WithBarButtons:(NSArray *)barButtons

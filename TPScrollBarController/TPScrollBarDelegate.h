@@ -6,11 +6,8 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "TPScrollBarController.h"
-
 @protocol TPScrollBarDelegate <NSObject>
 
-- (void)scrollBar:(UIScrollView *)scrollBar didSelectItem:(UIButton *)item;
+- (void)scrollBar:(id)scrollBarController DidTouchUpInsideBarButton:(UIButton *)barButton;
 
 @end

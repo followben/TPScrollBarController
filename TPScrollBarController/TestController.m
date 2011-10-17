@@ -7,6 +7,7 @@
 //
 
 #import "TestController.h"
+#import "TPScrollBarController.h"
 
 @implementation TestController
 
@@ -62,6 +63,8 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark - Custom methods for sample
+
 - (void)toggleBackgroundColor:(UIColor *)color
 {
     if ([self.view backgroundColor] == self.defaultColor) {
@@ -79,6 +82,12 @@
 - (void)toggleMeOrange
 {
     [self toggleBackgroundColor:[UIColor orangeColor]];
+}
+
+- (void)scrollBar:(id)scrollBarController DidTouchUpInsideBarButton:(UIButton *)barButton
+{
+    NSLog(@"%@ fired scrollBarViewControllerDidSelectBarButton: %@", self.title, barButton);
+    [(TPScrollBarController *)scrollBarController selectScrollBarPage:2 animated:YES];
 }
 
 @end
