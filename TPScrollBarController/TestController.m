@@ -38,6 +38,15 @@
     [super viewDidLoad];
     [self.view setBackgroundColor:self.defaultColor];
     // Do any additional setup after loading the view from its nib.
+    
+    [self.label setText:self.title];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    NSLog(@"viewWillAppear called for %@", self.title);
 }
 
 - (void)viewDidUnload

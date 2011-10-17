@@ -29,7 +29,8 @@ CGFloat         const   kScrollBarHeight = 88.f;
 - (void)initaliseContainerViews;
 - (void)resizeScrollBarForNumberOfPages;
 - (void)layoutBarButtons;
-- (void)registerBarButtonTargets;
+- (void)registerBarButtonTargetsAsChildViewControllers;
+- (void)barButtonReceivedTouchDown:(UIButton *)sender;
 
 @end
 
@@ -83,8 +84,9 @@ CGFloat         const   kScrollBarHeight = 88.f;
     [self initaliseContainerViews];
     [self resizeScrollBarForNumberOfPages];
     [self layoutBarButtons];
-    [self registerBarButtonTargets];
+    [self registerBarButtonTargetsAsChildViewControllers];
     [self selectScrollBarPage:self.selectedScrollBarPage animated:YES];
+    [self.contentView addSubview:self.selectedViewController.view];
 }
 
 - (void)viewDidUnload
@@ -218,7 +220,7 @@ CGFloat         const   kScrollBarHeight = 88.f;
     }
 }
 
-- (void)registerBarButtonTargets
+- (void)registerBarButtonTargetsAsChildViewControllers
 {
     // For each bar button
     for (UIButton *barButton in self.barButtons) {
@@ -228,12 +230,15 @@ CGFloat         const   kScrollBarHeight = 88.f;
             __block NSMutableSet *controllers = [NSMutableSet setWithArray:self.childViewControllers];
             [[barButton allTargets] enumerateObjectsUsingBlock:^(id target, BOOL *stop) {
 
+                // View Controller setter asserts that there is only one target.
+                // That is, there should only be one target to 'enumerate'.
                 UIViewController *controller = (UIViewController *)target;
                 
                 // If the target isn't already a child viewController, add it.
                 if (![controllers containsObject:target]) {
                     [self addChildViewController:controller];
-                    [self.contentView addSubview:controller.view];
+                    [controller didMoveToParentViewController:self];
+                    if (!self.selectedViewController) self.selectedViewController = controller;
                     [controllers addObject:target];
                 }
                 
@@ -242,8 +247,29 @@ CGFloat         const   kScrollBarHeight = 88.f;
                 self.registry = [self.registry arrayByAddingObject:entry];
 
             }];
+            
+            // Add self as a target for touch-down
+            [barButton addTarget:self action:@selector(barButtonReceivedTouchDown:) forControlEvents:UIControlEventTouchDown];
+            
         }
     }
+}
+
+- (void)barButtonReceivedTouchDown:(UIButton *)sender
+{
+    // Get the rejistry entry for the target
+    NSUInteger idx = [self.registry indexOfObjectPassingTest: ^(id dictionary, NSUInteger idx, BOOL *stop) {
+                return [[dictionary objectForKey: @"barButton"] isEqual:sender];
+    }];
+    UIViewController *targetViewController = (UIViewController *)[[self.registry objectAtIndex:idx] objectForKey:@"target"];
+    
+    // If the target isn't the current viewController, transition to the new view
+    if (![self.selectedViewController isEqual:targetViewController]) {
+        [self transitionFromViewController:self.selectedViewController toViewController:targetViewController duration:0 options:UIViewAnimationTransitionNone animations:^{} completion:^(BOOL finished) {
+            self.selectedViewController = targetViewController;
+        }];
+    }
+
 }
 
 @end

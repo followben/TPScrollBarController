@@ -19,9 +19,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     TestController *c1 = [[TestController alloc] init];
-    c1.label.text = @"Controller 1";
+    c1.title = @"Controller 1";
     TestController *c2 = [[TestController alloc] init];
-    c1.label.text = @"Controller 2";
+    c2.title = @"Controller 2";
     
     CGRect frame = CGRectMake(0, 0, 100, 50);
     
@@ -42,9 +42,9 @@
     
     NSSet *viewControllers = [NSSet setWithObjects:c1, c2, nil];
     NSArray *buttons = [NSArray arrayWithObjects:b1, b2, b3, nil];
-    NSArray *pages = [NSArray arrayWithObjects: [NSNumber numberWithInt:2],
+    NSArray *pages = [NSArray arrayWithObjects: [NSNumber numberWithInt:1],
                                                 [NSNumber numberWithInt:1],
-                                                [NSNumber numberWithInt:1], nil];
+                                                [NSNumber numberWithInt:2], nil];
     
     TPScrollBarController *sbc = [[TPScrollBarController alloc] init];
     [sbc setViewControllers:viewControllers WithBarButtons:buttons onScrollBarPages:pages];
