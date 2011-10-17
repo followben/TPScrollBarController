@@ -15,16 +15,16 @@ CGFloat         const   kScrollBarHeight = 88.f;
 #pragma mark -
 @interface TPScrollBarController ()
 
-@property(nonatomic)  UIScrollView     *scrollBar;
-@property(nonatomic)  UIView           *contentView;
 @property(nonatomic)  UIViewController *selectedViewController;
-@property(nonatomic)  NSOrderedSet     *scrollBarPageSet;
-@property(nonatomic)  NSSet            *viewControllers;
-@property(nonatomic)  NSArray          *barButtons;
 @property(nonatomic)  NSUInteger       selectedScrollBarPage;
 
-@property(nonatomic, strong)  NSArray               *scrollBarPageArray;
-@property(nonatomic, strong)  NSArray               *registry;
+@property(nonatomic, strong)  UIScrollView     *scrollBar;
+@property(nonatomic, strong)  UIView           *contentView;
+@property(nonatomic, strong)  NSOrderedSet     *scrollBarPageSet;
+@property(nonatomic, strong)  NSSet            *viewControllers;
+@property(nonatomic, strong)  NSArray          *barButtons;
+@property(nonatomic, strong)  NSArray          *scrollBarPageArray;
+@property(nonatomic, strong)  NSArray          *registry;
 
 - (void)performSelectorOnDelegate:(SEL)aSelector withObject:(id)param1 andObject:(id)param2;
 - (void)initaliseContainerViews;
@@ -145,8 +145,8 @@ CGFloat         const   kScrollBarHeight = 88.f;
 
 - (void)performSelectorOnDelegate:(SEL)aSelector withObject:(id)param1 andObject:(id)param2;
 {
-    if ([self.delegate respondsToSelector:aSelector])
-        objc_msgSend(self.delegate, aSelector, param1, param2); // performSelector: generates compiler warnings under ARC
+    if ([delegate_ respondsToSelector:aSelector])
+        objc_msgSend(delegate_, aSelector, param1, param2); // performSelector: generates compiler warnings under ARC
 }
 
 // Initialises an empty scrollBar and contentView and adds them as subviews.
