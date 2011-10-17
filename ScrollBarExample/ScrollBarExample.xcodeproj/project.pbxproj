@@ -7,34 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9F473409144C8E6D001A3CEA /* TPScrollBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F473407144C8E6D001A3CEA /* TPScrollBarController.m */; };
-		9F47340C144C9B83001A3CEA /* ContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F47340B144C9B82001A3CEA /* ContentViewController.xib */; };
+		9F252B43144CBEF900410633 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F252B3F144CBEF900410633 /* AppDelegate.m */; };
+		9F252B44144CBEF900410633 /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F252B41144CBEF900410633 /* ContentViewController.m */; };
+		9F252B45144CBEF900410633 /* ContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F252B42144CBEF900410633 /* ContentViewController.xib */; };
+		9F252B49144CBF0500410633 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F252B46144CBF0400410633 /* main.m */; };
+		9F75FF08144CA3B000C41DAE /* TPScrollBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F75FF01144CA24300C41DAE /* TPScrollBarController.m */; };
 		9FFD3D6C144AE7EA009AE40F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFD3D6B144AE7EA009AE40F /* UIKit.framework */; };
 		9FFD3D6E144AE7EA009AE40F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFD3D6D144AE7EA009AE40F /* Foundation.framework */; };
 		9FFD3D70144AE7EA009AE40F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFD3D6F144AE7EA009AE40F /* CoreGraphics.framework */; };
-		9FFD3D76144AE7EA009AE40F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9FFD3D74144AE7EA009AE40F /* InfoPlist.strings */; };
-		9FFD3D78144AE7EA009AE40F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFD3D77144AE7EA009AE40F /* main.m */; };
-		9FFD3D7C144AE7EA009AE40F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFD3D7B144AE7EA009AE40F /* AppDelegate.m */; };
-		9FFD3D89144B0954009AE40F /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFD3D87144B0954009AE40F /* ContentViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9F473406144C8E6D001A3CEA /* TPScrollBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPScrollBarController.h; sourceTree = SOURCE_ROOT; };
-		9F473407144C8E6D001A3CEA /* TPScrollBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPScrollBarController.m; sourceTree = SOURCE_ROOT; };
-		9F473408144C8E6D001A3CEA /* TPScrollBarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPScrollBarDelegate.h; sourceTree = SOURCE_ROOT; };
-		9F47340B144C9B82001A3CEA /* ContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentViewController.xib; sourceTree = "<group>"; };
-		9FFD3D67144AE7EA009AE40F /* TPScrollBarControllerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TPScrollBarControllerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F252B3E144CBEF900410633 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ScrollBarExample/Classes/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		9F252B3F144CBEF900410633 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ScrollBarExample/Classes/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		9F252B40144CBEF900410633 /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentViewController.h; path = ScrollBarExample/Classes/ContentViewController.h; sourceTree = SOURCE_ROOT; };
+		9F252B41144CBEF900410633 /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentViewController.m; path = ScrollBarExample/Classes/ContentViewController.m; sourceTree = SOURCE_ROOT; };
+		9F252B42144CBEF900410633 /* ContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ContentViewController.xib; path = ScrollBarExample/Classes/ContentViewController.xib; sourceTree = SOURCE_ROOT; };
+		9F252B46144CBF0400410633 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ScrollBarExample/main.m; sourceTree = SOURCE_ROOT; };
+		9F252B47144CBF0400410633 /* ScrollBarExample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ScrollBarExample-Info.plist"; path = "ScrollBarExample/ScrollBarExample-Info.plist"; sourceTree = SOURCE_ROOT; };
+		9F252B48144CBF0400410633 /* ScrollBarExample-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ScrollBarExample-Prefix.pch"; path = "ScrollBarExample/ScrollBarExample-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		9F75FF00144CA24300C41DAE /* TPScrollBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPScrollBarController.h; path = ../TPScrollBarController.h; sourceTree = "<group>"; };
+		9F75FF01144CA24300C41DAE /* TPScrollBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPScrollBarController.m; path = ../TPScrollBarController.m; sourceTree = "<group>"; };
+		9F75FF02144CA24300C41DAE /* TPScrollBarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPScrollBarDelegate.h; path = ../TPScrollBarDelegate.h; sourceTree = "<group>"; };
+		9FFD3D67144AE7EA009AE40F /* ScrollBarExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollBarExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FFD3D6B144AE7EA009AE40F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9FFD3D6D144AE7EA009AE40F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9FFD3D6F144AE7EA009AE40F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		9FFD3D73144AE7EA009AE40F /* TPScrollBarControllerExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TPScrollBarControllerExample-Info.plist"; sourceTree = "<group>"; };
-		9FFD3D75144AE7EA009AE40F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9FFD3D77144AE7EA009AE40F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9FFD3D79144AE7EA009AE40F /* TPScrollBarControllerExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TPScrollBarControllerExample-Prefix.pch"; sourceTree = "<group>"; };
-		9FFD3D7A144AE7EA009AE40F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		9FFD3D7B144AE7EA009AE40F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9FFD3D86144B0954009AE40F /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
-		9FFD3D87144B0954009AE40F /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,21 +49,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9F473405144C8DCE001A3CEA /* TPScrollBarController */ = {
+		9F75FF04144CA24D00C41DAE /* TPScrollBarController */ = {
 			isa = PBXGroup;
 			children = (
-				9F473406144C8E6D001A3CEA /* TPScrollBarController.h */,
-				9F473407144C8E6D001A3CEA /* TPScrollBarController.m */,
-				9F473408144C8E6D001A3CEA /* TPScrollBarDelegate.h */,
+				9F75FF00144CA24300C41DAE /* TPScrollBarController.h */,
+				9F75FF01144CA24300C41DAE /* TPScrollBarController.m */,
+				9F75FF02144CA24300C41DAE /* TPScrollBarDelegate.h */,
 			);
-			path = TPScrollBarController;
+			name = TPScrollBarController;
 			sourceTree = "<group>";
 		};
 		9FFD3D5C144AE7EA009AE40F = {
 			isa = PBXGroup;
 			children = (
-				9FFD3D71144AE7EA009AE40F /* TPScrollBarControllerExample */,
-				9F473405144C8DCE001A3CEA /* TPScrollBarController */,
+				9FFD3D71144AE7EA009AE40F /* ScrollBarExample */,
+				9F75FF04144CA24D00C41DAE /* TPScrollBarController */,
 				9FFD3D6A144AE7EA009AE40F /* Frameworks */,
 				9FFD3D68144AE7EA009AE40F /* Products */,
 			);
@@ -74,7 +72,7 @@
 		9FFD3D68144AE7EA009AE40F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9FFD3D67144AE7EA009AE40F /* TPScrollBarControllerExample.app */,
+				9FFD3D67144AE7EA009AE40F /* ScrollBarExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -89,27 +87,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9FFD3D71144AE7EA009AE40F /* TPScrollBarControllerExample */ = {
+		9FFD3D71144AE7EA009AE40F /* ScrollBarExample */ = {
 			isa = PBXGroup;
 			children = (
-				9FFD3D7A144AE7EA009AE40F /* AppDelegate.h */,
-				9FFD3D7B144AE7EA009AE40F /* AppDelegate.m */,
-				9F47340B144C9B82001A3CEA /* ContentViewController.xib */,
-				9FFD3D86144B0954009AE40F /* ContentViewController.h */,
-				9FFD3D87144B0954009AE40F /* ContentViewController.m */,
+				9F252B3E144CBEF900410633 /* AppDelegate.h */,
+				9F252B3F144CBEF900410633 /* AppDelegate.m */,
+				9F252B40144CBEF900410633 /* ContentViewController.h */,
+				9F252B41144CBEF900410633 /* ContentViewController.m */,
+				9F252B42144CBEF900410633 /* ContentViewController.xib */,
 				9FFD3D72144AE7EA009AE40F /* Supporting Files */,
 			);
-			name = TPScrollBarControllerExample;
+			name = ScrollBarExample;
 			path = TPScrollBarController;
 			sourceTree = "<group>";
 		};
 		9FFD3D72144AE7EA009AE40F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9FFD3D73144AE7EA009AE40F /* TPScrollBarControllerExample-Info.plist */,
-				9FFD3D74144AE7EA009AE40F /* InfoPlist.strings */,
-				9FFD3D77144AE7EA009AE40F /* main.m */,
-				9FFD3D79144AE7EA009AE40F /* TPScrollBarControllerExample-Prefix.pch */,
+				9F252B46144CBF0400410633 /* main.m */,
+				9F252B47144CBF0400410633 /* ScrollBarExample-Info.plist */,
+				9F252B48144CBF0400410633 /* ScrollBarExample-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -117,9 +114,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9FFD3D66144AE7EA009AE40F /* TPScrollBarControllerExample */ = {
+		9FFD3D66144AE7EA009AE40F /* ScrollBarExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9FFD3D7F144AE7EA009AE40F /* Build configuration list for PBXNativeTarget "TPScrollBarControllerExample" */;
+			buildConfigurationList = 9FFD3D7F144AE7EA009AE40F /* Build configuration list for PBXNativeTarget "ScrollBarExample" */;
 			buildPhases = (
 				9FFD3D63144AE7EA009AE40F /* Sources */,
 				9FFD3D64144AE7EA009AE40F /* Frameworks */,
@@ -129,9 +126,9 @@
 			);
 			dependencies = (
 			);
-			name = TPScrollBarControllerExample;
+			name = ScrollBarExample;
 			productName = TPScrollBarController;
-			productReference = 9FFD3D67144AE7EA009AE40F /* TPScrollBarControllerExample.app */;
+			productReference = 9FFD3D67144AE7EA009AE40F /* ScrollBarExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -142,7 +139,7 @@
 			attributes = {
 				LastUpgradeCheck = 0420;
 			};
-			buildConfigurationList = 9FFD3D61144AE7EA009AE40F /* Build configuration list for PBXProject "TPScrollBarControllerExample" */;
+			buildConfigurationList = 9FFD3D61144AE7EA009AE40F /* Build configuration list for PBXProject "ScrollBarExample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -154,7 +151,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9FFD3D66144AE7EA009AE40F /* TPScrollBarControllerExample */,
+				9FFD3D66144AE7EA009AE40F /* ScrollBarExample */,
 			);
 		};
 /* End PBXProject section */
@@ -164,8 +161,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FFD3D76144AE7EA009AE40F /* InfoPlist.strings in Resources */,
-				9F47340C144C9B83001A3CEA /* ContentViewController.xib in Resources */,
+				9F252B45144CBEF900410633 /* ContentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,25 +172,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FFD3D78144AE7EA009AE40F /* main.m in Sources */,
-				9FFD3D7C144AE7EA009AE40F /* AppDelegate.m in Sources */,
-				9FFD3D89144B0954009AE40F /* ContentViewController.m in Sources */,
-				9F473409144C8E6D001A3CEA /* TPScrollBarController.m in Sources */,
+				9F75FF08144CA3B000C41DAE /* TPScrollBarController.m in Sources */,
+				9F252B43144CBEF900410633 /* AppDelegate.m in Sources */,
+				9F252B44144CBEF900410633 /* ContentViewController.m in Sources */,
+				9F252B49144CBF0500410633 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		9FFD3D74144AE7EA009AE40F /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9FFD3D75144AE7EA009AE40F /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		9FFD3D7D144AE7EA009AE40F /* Debug */ = {
@@ -204,6 +189,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -246,9 +232,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TPScrollBarController/TPScrollBarControllerExample-Prefix.pch";
-				INFOPLIST_FILE = "TPScrollBarController/TPScrollBarControllerExample-Info.plist";
-				PRODUCT_NAME = TPScrollBarControllerExample;
+				GCC_PREFIX_HEADER = "ScrollBarExample/ScrollBarExample-Prefix.pch";
+				INFOPLIST_FILE = "ScrollBarExample/ScrollBarExample-Info.plist";
+				PRODUCT_NAME = ScrollBarExample;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -257,9 +243,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TPScrollBarController/TPScrollBarControllerExample-Prefix.pch";
-				INFOPLIST_FILE = "TPScrollBarController/TPScrollBarControllerExample-Info.plist";
-				PRODUCT_NAME = TPScrollBarControllerExample;
+				GCC_PREFIX_HEADER = "ScrollBarExample/ScrollBarExample-Prefix.pch";
+				INFOPLIST_FILE = "ScrollBarExample/ScrollBarExample-Info.plist";
+				PRODUCT_NAME = ScrollBarExample;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -267,7 +253,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9FFD3D61144AE7EA009AE40F /* Build configuration list for PBXProject "TPScrollBarControllerExample" */ = {
+		9FFD3D61144AE7EA009AE40F /* Build configuration list for PBXProject "ScrollBarExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9FFD3D7D144AE7EA009AE40F /* Debug */,
@@ -276,7 +262,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9FFD3D7F144AE7EA009AE40F /* Build configuration list for PBXNativeTarget "TPScrollBarControllerExample" */ = {
+		9FFD3D7F144AE7EA009AE40F /* Build configuration list for PBXNativeTarget "ScrollBarExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9FFD3D80144AE7EA009AE40F /* Debug */,

@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'TPScrollBarControllerExample' target in the 'TPScrollBarControllerExample' project
+// Prefix header for all source files of the 'ScrollBarExample' target in the 'ScrollBarExample' project
 //
 
 #import <Availability.h>
