@@ -149,6 +149,13 @@ static  BOOL    const   kDefaultScrollBarShouldShowScrollIndicators = YES;
     self.selectedScrollBarPage = pageNumber;
 }
 
+- (void)selectViewController:(UIViewController *)childViewController
+{
+    [self transitionFromViewController:self.selectedViewController toViewController:childViewController duration:0 options:UIViewAnimationTransitionNone animations:^{} completion:^(BOOL finished) {
+        self.selectedViewController = childViewController;
+    }];
+}
+
 
 #pragma mark - Private methods
 
@@ -286,11 +293,7 @@ static  BOOL    const   kDefaultScrollBarShouldShowScrollIndicators = YES;
     UIViewController *targetViewController = (UIViewController *)[[self.registry objectAtIndex:idx] objectForKey:@"target"];
     
     // If the target isn't the current viewController, transition to the new view
-    if (![self.selectedViewController isEqual:targetViewController]) {
-        [self transitionFromViewController:self.selectedViewController toViewController:targetViewController duration:0 options:UIViewAnimationTransitionNone animations:^{} completion:^(BOOL finished) {
-            self.selectedViewController = targetViewController;
-        }];
-    }
+    if (![self.selectedViewController isEqual:targetViewController]) [self selectViewController:targetViewController];
 }
 
 - (void)barButtonReceivedTouchUpInside:(UIButton *)sender

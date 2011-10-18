@@ -14,7 +14,7 @@
 //      * bar buttons to be enabled or disabled
 @interface TPScrollBarController : UIViewController {
 
-@private
+@protected
     NSObject<TPScrollBarDelegate> *delegate_;
     
     UIScrollView            *scrollBar_;
