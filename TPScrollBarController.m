@@ -9,7 +9,8 @@
 #import <objc/message.h>
 
 #pragma mark Constants and enums
-CGFloat         const   kScrollBarHeight = 88.f;
+static  CGFloat const   kDefaultScrollBarHeight = 66.f;
+static  BOOL    const   kDefaultScrollBarShouldShowScrollIndicators = YES;
 
 #pragma mark -
 @interface TPScrollBarController ()
@@ -46,6 +47,8 @@ CGFloat         const   kScrollBarHeight = 88.f;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         registry_ = [NSArray array];
+        scrollBarHeight_ = kDefaultScrollBarHeight;
+        scrollBarShouldDisplayScrollIndicators_ = kDefaultScrollBarShouldShowScrollIndicators;
     }
     return self;
 }
@@ -59,6 +62,8 @@ CGFloat         const   kScrollBarHeight = 88.f;
 
 @synthesize delegate = delegate_;
 @synthesize scrollBar = scrollBar_;
+@synthesize scrollBarHeight = scrollBarHeight_;
+@synthesize scrollBarShouldDisplayScrollIndicators = scrollBarShouldDisplayScrollIndicators_;
 @synthesize contentView = contentView_;
 @synthesize selectedViewController = selectedViewController_;
 @synthesize scrollBarPageSet = scrollBarPageSet_;
@@ -153,21 +158,23 @@ CGFloat         const   kScrollBarHeight = 88.f;
 {
     CGFloat xpos = 0.f;
     CGFloat width = [[UIScreen mainScreen] applicationFrame].size.width;
-    CGFloat ypos = [[UIScreen mainScreen] applicationFrame].size.height - kScrollBarHeight;
-    self.scrollBar = [[UIScrollView alloc] initWithFrame:CGRectMake(xpos, ypos, width, kScrollBarHeight)];
-    [self.scrollBar setBackgroundColor:[UIColor redColor]];
+    CGFloat ypos = [[UIScreen mainScreen] applicationFrame].size.height - self.scrollBarHeight;
+    self.scrollBar = [[UIScrollView alloc] initWithFrame:CGRectMake(xpos, ypos, width, self.scrollBarHeight)];
+    self.scrollBar.backgroundColor = [UIColor clearColor];
+    self.scrollBar.opaque = NO;
     self.scrollBar.clipsToBounds = YES;
     self.scrollBar.scrollEnabled = YES;
 	self.scrollBar.pagingEnabled = YES;
-    self.scrollBar.showsHorizontalScrollIndicator = YES;
-    self.scrollBar.showsVerticalScrollIndicator = YES;
+    self.scrollBar.showsHorizontalScrollIndicator = self.scrollBarShouldDisplayScrollIndicators;
+    self.scrollBar.showsVerticalScrollIndicator = self.scrollBarShouldDisplayScrollIndicators;
     [self.view addSubview:self.scrollBar];
 
     
     ypos = [[UIScreen mainScreen] bounds].origin.y;
-    CGFloat height = [[UIScreen mainScreen] applicationFrame].size.height - kScrollBarHeight;
+    CGFloat height = [[UIScreen mainScreen] applicationFrame].size.height - self.scrollBarHeight;
     self.contentView = [[UIView alloc] initWithFrame:CGRectMake(xpos, ypos, width, height)];
-    [self.contentView setBackgroundColor:[UIColor greenColor]];
+    self.contentView.backgroundColor = [UIColor clearColor];
+    self.contentView.opaque = NO;
     self.contentView.clipsToBounds = YES;
     [self.view addSubview:self.contentView];
 }
@@ -218,7 +225,7 @@ CGFloat         const   kScrollBarHeight = 88.f;
             // place it on the scrollBar according to the page offset.
             CGRect newFrame = barButton.frame;
             newFrame.origin.x = xpos;
-            newFrame.origin.y = barButton.frame.size.height / 2;
+            if (newFrame.origin.y == 0) newFrame.origin.y = (self.scrollBarHeight - barButton.frame.size.height) / 2;
             barButton.frame = newFrame;
             [self.scrollBar addSubview:barButton];
             
@@ -267,7 +274,7 @@ CGFloat         const   kScrollBarHeight = 88.f;
 
 - (void)barButtonReceivedTouchDown:(UIButton *)sender
 {
-    // Get the rejistry entry for the target
+    // Get the registry entry for the target
     NSUInteger idx = [self.registry indexOfObjectPassingTest: ^(id dictionary, NSUInteger idx, BOOL *stop) {
                 return [[dictionary objectForKey: @"barButton"] isEqual:sender];
     }];

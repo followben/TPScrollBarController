@@ -18,6 +18,8 @@
     NSObject<TPScrollBarDelegate> *delegate_;
     
     UIScrollView            *scrollBar_;
+    NSUInteger              scrollBarHeight_;
+    BOOL                    scrollBarShouldDisplayScrollIndicators_;
     UIView                  *contentView_;
     UIViewController        *selectedViewController_;
     NSArray                 *scrollBarPageArray_;
@@ -29,6 +31,9 @@
 }
 
 @property(nonatomic, strong)    NSObject<TPScrollBarDelegate>   *delegate;
+@property(nonatomic, assign)    NSUInteger                      scrollBarHeight;
+@property(nonatomic, assign)    BOOL                            scrollBarShouldDisplayScrollIndicators;
+
 @property(nonatomic, readonly)  UIViewController                *selectedViewController;
 @property(nonatomic, readonly)  NSUInteger                      selectedScrollBarPage;
 
@@ -37,5 +42,6 @@
           onScrollBarPages:(NSArray *)pageNumbers;
 
 - (void)selectScrollBarPage:(NSUInteger)pageNumber animated:(BOOL)animated;
+- (void)selectViewController:(UIViewController *)childViewController;
 
 @end
