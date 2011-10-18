@@ -77,10 +77,15 @@ static  BOOL    const   kDefaultScrollBarShouldShowScrollIndicators = YES;
 
 #pragma mark - View lifecycle
 
+- (void)loadView
+{
+    [super loadView];
+    [self registerBarButtonTargetsAsChildViewControllers];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -90,7 +95,7 @@ static  BOOL    const   kDefaultScrollBarShouldShowScrollIndicators = YES;
     [self initaliseContainerViews];
     [self resizeScrollBarForNumberOfPages];
     [self layoutBarButtons];
-    [self registerBarButtonTargetsAsChildViewControllers];
+
     self.selectedScrollBarPage = 1;
     [self.contentView addSubview:self.selectedViewController.view];
 }
