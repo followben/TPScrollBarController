@@ -11,6 +11,7 @@
 #pragma mark Constants and enums
 static  CGFloat const   kDefaultScrollBarHeight = 66.f;
 static  BOOL    const   kDefaultScrollBarShouldShowScrollIndicators = YES;
+static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
 
 #pragma mark -
 @interface TPScrollBarController ()
@@ -49,6 +50,7 @@ static  BOOL    const   kDefaultScrollBarShouldShowScrollIndicators = YES;
         registry_ = [NSArray array];
         scrollBarHeight_ = kDefaultScrollBarHeight;
         scrollBarShouldDisplayScrollIndicators_ = kDefaultScrollBarShouldShowScrollIndicators;
+        scrollBarShouldAlwaysBounce_ = kDefaultScrollBarShouldAlwaysBounce;
     }
     return self;
 }
@@ -64,6 +66,7 @@ static  BOOL    const   kDefaultScrollBarShouldShowScrollIndicators = YES;
 @synthesize scrollBar = scrollBar_;
 @synthesize scrollBarHeight = scrollBarHeight_;
 @synthesize scrollBarShouldDisplayScrollIndicators = scrollBarShouldDisplayScrollIndicators_;
+@synthesize scrollBarShouldAlwaysBounce = scrollBarShouldAlwaysBounce_;
 @synthesize contentView = contentView_;
 @synthesize selectedViewController = selectedViewController_;
 @synthesize scrollBarPageSet = scrollBarPageSet_;
@@ -194,8 +197,11 @@ static  BOOL    const   kDefaultScrollBarShouldShowScrollIndicators = YES;
 
 - (void)resizeScrollBarForNumberOfPages
 {
+    NSUInteger noOfPages = ((NSNumber *)[self.scrollBarPageSet lastObject]).integerValue;
+    
     CGSize size = self.scrollBar.frame.size;
-    size.width = [[UIScreen mainScreen] applicationFrame].size.width * ((NSNumber *)[self.scrollBarPageSet lastObject]).integerValue;
+    size.width = [[UIScreen mainScreen] applicationFrame].size.width * noOfPages;
+    if (noOfPages == 1 && self.scrollBarShouldAlwaysBounce) size.width = size.width + 1.0f;
     self.scrollBar.contentSize = size;
 }
 
