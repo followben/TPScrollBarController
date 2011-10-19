@@ -124,7 +124,8 @@ static  BOOL    const   kDefaultScrollBarShouldShowScrollIndicators = YES;
 {
     NSAssert([barButtons count] == [pageNumbers count], @"barButton and pageNumber arrays must contain the same number of objects");
     for (UIButton *barButton in barButtons) {
-        NSAssert([[barButton allTargets] count] == 1, @"barButtons can only have one target");
+        NSAssert([[barButton allTargets] count] > 0, @"barButtons must have a target");
+        NSAssert([[barButton allTargets] count] < 2, @"barButtons can only have one target");
         NSAssert([[[[barButton allTargets] allObjects] objectAtIndex:0] isKindOfClass:[UIViewController class]], @"barButton target must be a UIViewController");
     }
     for (NSNumber *pageNumber in pageNumbers) {
