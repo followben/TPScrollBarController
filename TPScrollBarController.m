@@ -26,10 +26,10 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
 @property(nonatomic, strong)  NSArray          *barButtons;
 @property(nonatomic, strong)  NSArray          *scrollBarPageArray;
 @property(nonatomic, strong)  NSArray          *registry;
+@property(nonatomic, assign)  BOOL             shouldForwardAppearanceAndRotationMethodsToChildViewControllers;
 
 - (void)performSelectorOnDelegate:(SEL)aSelector withObject:(id)param1 andObject:(id)param2;
 - (void)initaliseContainerViews;
-- (void)resizeScrollBarForNumberOfPages;
 - (void)layoutBarButtons;
 - (void)registerBarButtonTargetsAsChildViewControllers;
 - (void)barButtonReceivedTouchDown:(UIButton *)sender;
@@ -51,6 +51,10 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
         scrollBarHeight_ = kDefaultScrollBarHeight;
         scrollBarShouldDisplayScrollIndicators_ = kDefaultScrollBarShouldShowScrollIndicators;
         scrollBarShouldAlwaysBounce_ = kDefaultScrollBarShouldAlwaysBounce;
+        
+        // Don't forward these methods until the root view has been loaded
+        // (i.e. we set this to YES in viewWillAppear)
+        shouldForwardAppearanceAndRotationMethodsToChildViewControllers_ = NO;
     }
     return self;
 }
@@ -76,9 +80,15 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
 
 @synthesize scrollBarPageArray = scrollBarPageArray_;
 @synthesize registry = registry_;
+@synthesize shouldForwardAppearanceAndRotationMethodsToChildViewControllers = shouldForwardAppearanceAndRotationMethodsToChildViewControllers_;
 
 
 #pragma mark - View lifecycle
+
+- (BOOL)automaticallyForwardAppearanceAndRotationMethodsToChildViewControllers
+{
+    return self.shouldForwardAppearanceAndRotationMethodsToChildViewControllers;
+}
 
 - (void)loadView
 {
@@ -94,9 +104,12 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    // Now we can forward events.
+    self.shouldForwardAppearanceAndRotationMethodsToChildViewControllers = YES;
 
     [self initaliseContainerViews];
-    [self resizeScrollBarForNumberOfPages];
+    [self resizeScrollBarForNumberOfPages:((NSNumber *)[self.scrollBarPageSet lastObject]).intValue];
     [self layoutBarButtons];
 
     self.selectedScrollBarPage = 1;
@@ -142,6 +155,14 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
     self.viewControllers = viewControllers;
     self.barButtons = barButtons;
     self.scrollBarPageArray = pageNumbers;
+}
+
+- (void)resizeScrollBarForNumberOfPages:(NSUInteger)pages
+{
+    CGSize size = self.scrollBar.frame.size;
+    size.width = [[UIScreen mainScreen] applicationFrame].size.width * pages;
+    if (pages == 1 && self.scrollBarShouldAlwaysBounce) size.width = size.width + 1.0f;
+    self.scrollBar.contentSize = size;
 }
 
 - (void)selectScrollBarPage:(NSUInteger)pageNumber animated:(BOOL)animated
@@ -193,16 +214,6 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
     self.contentView.opaque = NO;
     self.contentView.clipsToBounds = YES;
     [self.view addSubview:self.contentView];
-}
-
-- (void)resizeScrollBarForNumberOfPages
-{
-    NSUInteger noOfPages = ((NSNumber *)[self.scrollBarPageSet lastObject]).integerValue;
-    
-    CGSize size = self.scrollBar.frame.size;
-    size.width = [[UIScreen mainScreen] applicationFrame].size.width * noOfPages;
-    if (noOfPages == 1 && self.scrollBarShouldAlwaysBounce) size.width = size.width + 1.0f;
-    self.scrollBar.contentSize = size;
 }
 
 - (void)layoutBarButtons

@@ -29,6 +29,8 @@
     NSArray                 *barButtons_;
     NSUInteger              selectedScrollBarPage_;
     NSArray                 *registry_;
+    BOOL                    shouldForwardAppearanceAndRotationMethodsToChildViewControllers_;
+
 }
 
 @property(nonatomic, strong)    NSObject<TPScrollBarDelegate>   *delegate;
@@ -44,6 +46,8 @@
           onScrollBarPages:(NSArray *)pageNumbers;
 
 - (void)selectScrollBarPage:(NSUInteger)pageNumber animated:(BOOL)animated;
+- (void)resizeScrollBarForNumberOfPages:(NSUInteger)pages;
 - (void)selectViewController:(UIViewController *)childViewController;
+
 
 @end
