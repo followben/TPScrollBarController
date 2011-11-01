@@ -215,13 +215,6 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
     self.contentView.opaque = NO;
     self.contentView.clipsToBounds = NO;
     [self.view addSubview:self.contentView];
-    
-    // Add drop shadow. 
-    // TODO: consider using an image to improve performance & get the shadow running the whole screen
-    self.contentView.layer.masksToBounds = NO;
-    self.contentView.layer.shadowOffset = CGSizeMake(0, 5);
-    self.contentView.layer.shadowRadius = 5;
-    self.contentView.layer.shadowOpacity = 2;
 }
 
 - (void)layoutBarButtons
