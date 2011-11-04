@@ -15,7 +15,7 @@
 @interface TPScrollBarController : UIViewController {
 
 @protected
-    NSObject<TPScrollBarDelegate> *delegate_;
+    id<TPScrollBarDelegate> delegate_;
     
     UIScrollView            *scrollBar_;
     NSUInteger              scrollBarHeight_;
@@ -33,7 +33,7 @@
 
 }
 
-@property(nonatomic, strong)    NSObject<TPScrollBarDelegate>   *delegate;
+@property(nonatomic, strong)    id<TPScrollBarDelegate>         delegate;
 @property(nonatomic, assign)    NSUInteger                      scrollBarHeight;
 @property(nonatomic, assign)    BOOL                            scrollBarShouldDisplayScrollIndicators;
 @property(nonatomic, assign)    BOOL                            scrollBarShouldAlwaysBounce;
