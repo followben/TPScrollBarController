@@ -213,7 +213,7 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
     self.contentView = [[UIView alloc] initWithFrame:CGRectMake(xpos, ypos, width, height)];
     self.contentView.backgroundColor = [UIColor clearColor];
     self.contentView.opaque = NO;
-    self.contentView.clipsToBounds = NO;
+    self.contentView.clipsToBounds = YES;
     [self.view addSubview:self.contentView];
 }
 
