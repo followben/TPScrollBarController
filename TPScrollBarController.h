@@ -43,7 +43,8 @@
 
 - (void)setViewControllers:(NSSet *)viewControllers
             WithBarButtons:(NSArray *)barButtons
-          onScrollBarPages:(NSArray *)pageNumbers;
+          onScrollBarPages:(NSArray *)pageNumbers
+     withDefaultController:(UIViewController *)defaultViewController;
 
 - (void)selectScrollBarPage:(NSUInteger)pageNumber animated:(BOOL)animated;
 - (void)resizeScrollBarForNumberOfPages:(NSUInteger)pages;

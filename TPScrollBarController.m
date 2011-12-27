@@ -56,6 +56,7 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
         // Don't forward these methods until the root view has been loaded
         // (i.e. we set this to YES in viewWillAppear)
         shouldForwardAppearanceAndRotationMethodsToChildViewControllers_ = NO;
+        selectedScrollBarPage_ = 1;
     }
     return self;
 }
@@ -100,21 +101,19 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    // Now we can forward events.
+    self.shouldForwardAppearanceAndRotationMethodsToChildViewControllers = YES;
+    
+    [self initaliseContainerViews];
+    [self resizeScrollBarForNumberOfPages:((NSNumber *)[self.scrollBarPageSet lastObject]).intValue];
+    [self layoutBarButtons];
+    [self.contentView addSubview:self.selectedViewController.view];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    // Now we can forward events.
-    self.shouldForwardAppearanceAndRotationMethodsToChildViewControllers = YES;
-
-    [self initaliseContainerViews];
-    [self resizeScrollBarForNumberOfPages:((NSNumber *)[self.scrollBarPageSet lastObject]).intValue];
-    [self layoutBarButtons];
-
-    self.selectedScrollBarPage = 1;
-    [self.contentView addSubview:self.selectedViewController.view];
 }
 
 - (void)viewDidUnload
@@ -138,6 +137,7 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
 - (void)setViewControllers:(NSSet *)viewControllers
             WithBarButtons:(NSArray *)barButtons
           onScrollBarPages:(NSArray *)pageNumbers
+     withDefaultController:(UIViewController *)defaultViewController
 {
     NSAssert([barButtons count] == [pageNumbers count], @"barButton and pageNumber arrays must contain the same number of objects");
     for (UIButton *barButton in barButtons) {
@@ -154,6 +154,7 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
     [numbers sortUsingDescriptors:[NSArray arrayWithObject:ascending]];
     self.scrollBarPageSet = [NSOrderedSet orderedSetWithArray:numbers];
     self.viewControllers = viewControllers;
+    self.selectedViewController = defaultViewController;
     self.barButtons = barButtons;
     self.scrollBarPageArray = pageNumbers;
 }
@@ -285,7 +286,6 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
                 if (![controllers containsObject:target]) {
                     [self addChildViewController:controller];
                     [controller didMoveToParentViewController:self];
-                    if (!self.selectedViewController) self.selectedViewController = controller;
                     [controllers addObject:target];
                 }
                 
