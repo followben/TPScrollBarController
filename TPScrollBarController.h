@@ -33,10 +33,11 @@
 
 }
 
-@property(nonatomic, strong)    id<TPScrollBarDelegate>         delegate;
-@property(nonatomic, assign)    NSUInteger                      scrollBarHeight;
-@property(nonatomic, assign)    BOOL                            scrollBarShouldDisplayScrollIndicators;
-@property(nonatomic, assign)    BOOL                            scrollBarShouldAlwaysBounce;
+@property(nonatomic, strong)            id<TPScrollBarDelegate>     delegate;
+@property(nonatomic, assign)            NSUInteger                  scrollBarHeight;
+@property(nonatomic, assign)            BOOL                        scrollBarShouldDisplayScrollIndicators;
+@property(nonatomic, assign)            BOOL                        scrollBarShouldAlwaysBounce;
+@property(nonatomic, assign)            BOOL                        fullScreenMode;
 
 @property(nonatomic, readonly)  UIViewController                *selectedViewController;
 @property(nonatomic, readonly)  NSUInteger                      selectedScrollBarPage;
@@ -49,6 +50,6 @@
 - (void)selectScrollBarPage:(NSUInteger)pageNumber animated:(BOOL)animated;
 - (void)resizeScrollBarForNumberOfPages:(NSUInteger)pages;
 - (void)selectViewController:(UIViewController *)childViewController;
-
+- (void)setFullScreenMode:(BOOL)moveToFullScreen animated:(BOOL)animated;
 
 @end

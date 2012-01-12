@@ -183,6 +183,36 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
     }];
 }
 
+- (void)setFullScreenMode:(BOOL)moveToFullScreen animated:(BOOL)animated
+{
+    // If full the view is already in full screen mode
+    if (moveToFullScreen && (self.contentView.frame.size.height == [[UIScreen mainScreen] applicationFrame].size.height))
+        return;
+    
+    // Hide the scroll bar before growing the content frame
+    if (!moveToFullScreen)
+        self.scrollBar.hidden = NO;
+    
+    CGRect __block frame = self.contentView.frame;
+    if (moveToFullScreen)
+        frame.size.height = [[UIScreen mainScreen] applicationFrame].size.height;
+    else
+        frame.size.height = [[UIScreen mainScreen] applicationFrame].size.height - self.scrollBarHeight;
+    
+    if (animated) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.contentView.frame = frame;
+        } completion: ^(BOOL finished) {
+            if (moveToFullScreen)
+                self.scrollBar.hidden = YES;
+        }];
+    } else {
+        self.contentView.frame = frame;
+        if (moveToFullScreen)
+            self.scrollBar.hidden = YES;
+    }
+}
+
 
 #pragma mark - Private methods
 
@@ -319,6 +349,19 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
 {
     // Inform delegate of button selection.
     [self performSelectorOnDelegate:@selector(scrollBar:DidTouchUpInsideBarButton:) withObject:self andObject:sender];
+}
+
+
+#pragma mark - Property setters and getters
+
+- (void)setFullScreenMode:(BOOL)fullScreen
+{
+    [self setFullScreenMode:fullScreen animated:NO];
+}
+
+- (BOOL)fullScreenMode
+{
+    return self.contentView.frame.size.height == [[UIScreen mainScreen] applicationFrame].size.height;
 }
 
 @end
