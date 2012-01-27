@@ -200,7 +200,8 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
         frame.size.height = [[UIScreen mainScreen] applicationFrame].size.height - self.scrollBarHeight;
     
     if (animated) {
-        [UIView animateWithDuration:0.3 animations:^{
+        UIViewAnimationCurve animationCurve = moveToFullScreen ? UIViewAnimationCurveEaseOut : UIViewAnimationCurveEaseIn;
+        [UIView animateWithDuration:0.3 delay:0 options:animationCurve animations:^{
             self.contentView.frame = frame;
         } completion: ^(BOOL finished) {
             if (moveToFullScreen)
