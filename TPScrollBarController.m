@@ -23,7 +23,6 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
 @property(nonatomic, strong)  UIScrollView     *scrollBar;
 @property(nonatomic, strong)  UIView           *contentView;
 @property(nonatomic, strong)  NSOrderedSet     *scrollBarPageSet;
-@property(nonatomic, strong)  NSSet            *viewControllers;
 @property(nonatomic, strong)  NSArray          *barButtons;
 @property(nonatomic, strong)  NSArray          *scrollBarPageArray;
 @property(nonatomic, strong)  NSArray          *registry;
@@ -32,7 +31,6 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
 - (void)performSelectorOnDelegate:(SEL)aSelector withObject:(id)param1 andObject:(id)param2;
 - (void)initaliseContainerViews;
 - (void)layoutBarButtons;
-- (void)registerBarButtonTargetsAsChildViewControllers;
 - (void)barButtonReceivedTouchDown:(UIButton *)sender;
 - (void)barButtonReceivedTouchUpInside:(UIButton *)sender;
 
@@ -77,7 +75,6 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
 @synthesize selectedViewController = selectedViewController_;
 @synthesize scrollBarPageSet = scrollBarPageSet_;
 @synthesize selectedScrollBarPage = selectedScrollBarPage_;
-@synthesize viewControllers = viewControllers_;
 @synthesize barButtons = barButtons_;
 
 @synthesize scrollBarPageArray = scrollBarPageArray_;
@@ -95,7 +92,6 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
 - (void)loadView
 {
     [super loadView];
-    [self registerBarButtonTargetsAsChildViewControllers];
 }
 
 - (void)viewDidLoad
@@ -134,17 +130,16 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
 
 #pragma mark - Public methods
 
-- (void)setViewControllers:(NSSet *)viewControllers
-            WithBarButtons:(NSArray *)barButtons
-          onScrollBarPages:(NSArray *)pageNumbers
-     withDefaultController:(UIViewController *)defaultViewController
+- (void)setBarButtons:(NSArray *)barButtons
+     onScrollBarPages:(NSArray *)pageNumbers
+    withDefaultButton:(UIButton *)defaultButton
 {
     NSAssert([barButtons count] == [pageNumbers count], @"barButton and pageNumber arrays must contain the same number of objects");
     for (UIButton *barButton in barButtons) {
-        NSAssert([[barButton allTargets] count] > 0, @"barButtons must have a target");
-        NSAssert([[barButton allTargets] count] < 2, @"barButtons can only have one target");
-        NSAssert([[[[barButton allTargets] allObjects] objectAtIndex:0] isKindOfClass:[UIViewController class]], @"barButton target must be a UIViewController");
+        [barButton addTarget:self action:@selector(barButtonReceivedTouchDown:) forControlEvents:UIControlEventTouchDown];
+        [barButton addTarget:self action:@selector(barButtonReceivedTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     }
+
     for (NSNumber *pageNumber in pageNumbers) {
         NSAssert([pageNumber integerValue] > 0, @"pageNumbers must be greater than zero");
     }
@@ -153,10 +148,11 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
     NSMutableArray *numbers = [NSMutableArray arrayWithArray:pageNumbers];
     [numbers sortUsingDescriptors:[NSArray arrayWithObject:ascending]];
     self.scrollBarPageSet = [NSOrderedSet orderedSetWithArray:numbers];
-    self.viewControllers = viewControllers;
-    self.selectedViewController = defaultViewController;
+    self.selectedViewController = [self viewControllerForButton:defaultButton];
     self.barButtons = barButtons;
     self.scrollBarPageArray = pageNumbers;
+
+    
 }
 
 - (void)resizeScrollBarForNumberOfPages:(NSUInteger)pages
@@ -299,59 +295,51 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
     }
 }
 
-- (void)registerBarButtonTargetsAsChildViewControllers
+- (void)barButtonReceivedTouchDown:(UIButton *)sender
 {
-    // For each bar button
-    for (UIButton *barButton in self.barButtons) {
-        
-        if (self.viewControllers) {
-            
-            __block NSMutableSet *controllers = [NSMutableSet setWithArray:self.childViewControllers];
-            [[barButton allTargets] enumerateObjectsUsingBlock:^(id target, BOOL *stop) {
+    UIViewController *targetViewController = [self viewControllerForButton:sender];
+    SEL selector = [self selectorForButton:sender];
+    
+    if (targetViewController) {
+        // If the target isn't the current viewController, transition to the new view
+        if (![self.selectedViewController isEqual:targetViewController])
+            [self selectViewController:targetViewController];
 
-                // View Controller setter asserts that there is only one target.
-                // That is, there should only be one target to 'enumerate'.
-                UIViewController *controller = (UIViewController *)target;
-                
-                // If the target isn't already a child viewController, add it.
-                if (![controllers containsObject:target]) {
-                    [self addChildViewController:controller];
-                    [controller didMoveToParentViewController:self];
-                    [controllers addObject:target];
-                }
-                
-                // Register the button/ target/ action combination
-                NSDictionary *entry = [NSDictionary dictionaryWithObjectsAndKeys:barButton, @"barButton", target, @"target", nil];
-                self.registry = [self.registry arrayByAddingObject:entry];
+        if (selector) {
+            // If we have a targetViewController AND a selector for the button, assign them to the UIControlEventTouchUpInside
+            // (if one has not already been assigned)
+            if (![sender.allTargets containsObject:targetViewController]) {
 
-            }];
-            
-            // Add self as a target for touch events
-            [barButton addTarget:self action:@selector(barButtonReceivedTouchDown:) forControlEvents:UIControlEventTouchDown];
-            [barButton addTarget:self action:@selector(barButtonReceivedTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
-            
+                [sender addTarget:targetViewController
+                           action:selector
+                 forControlEvents:UIControlEventTouchUpInside];
+            }
         }
     }
 }
 
-- (void)barButtonReceivedTouchDown:(UIButton *)sender
-{
-    // Get the registry entry for the target
-    NSUInteger idx = [self.registry indexOfObjectPassingTest: ^(id dictionary, NSUInteger idx, BOOL *stop) {
-                return [[dictionary objectForKey: @"barButton"] isEqual:sender];
-    }];
-    UIViewController *targetViewController = (UIViewController *)[[self.registry objectAtIndex:idx] objectForKey:@"target"];
-    
-    // If the target isn't the current viewController, transition to the new view
-    if (![self.selectedViewController isEqual:targetViewController]) [self selectViewController:targetViewController];
-}
-
 - (void)barButtonReceivedTouchUpInside:(UIButton *)sender
-{
+{    
     // Inform delegate of button selection.
     [self performSelectorOnDelegate:@selector(scrollBar:DidTouchUpInsideBarButton:) withObject:self andObject:sender];
 }
 
+
+#pragma mark - Methods subclass should override
+
+- (UIViewController *)viewControllerForButton:(UIButton *)button
+{
+    NSLog(@"viewControllerForButton: '%@' was pressed. Override this method in subclass to provide the appropriate view controller for the button.", button.titleLabel);
+    
+    return nil;
+}
+
+- (SEL)selectorForButton:(UIButton *)button
+{
+    NSLog(@"selectorForButton: '%@' was pressed. Override this method in subclass to provide the appropriate selector name for the button's target view controller.", button.titleLabel);
+    
+    return nil;
+}
 
 #pragma mark - Property setters and getters
 
