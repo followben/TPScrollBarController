@@ -42,12 +42,11 @@
 @property(nonatomic, readonly)  NSUInteger                      selectedScrollBarPage;
 
 - (void)setBarButtons:(NSArray *)barButtons
-     onScrollBarPages:(NSArray *)pageNumbers
-    withDefaultButton:(UIButton *)defaultButton;
+     onScrollBarPages:(NSArray *)pageNumbers;
 
 - (void)selectScrollBarPage:(NSUInteger)pageNumber animated:(BOOL)animated;
 - (void)resizeScrollBarForNumberOfPages:(NSUInteger)pages;
-- (void)selectViewController:(UIViewController *)childViewController;
+- (void)selectViewController:(UIViewController *)childViewController invokeSelector:(SEL)selector;
 - (void)setFullScreenMode:(BOOL)moveToFullScreen animated:(BOOL)animated;
 
 // Subclass should override these methods to provide the correct view controller for the given button

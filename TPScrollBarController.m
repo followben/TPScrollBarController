@@ -29,6 +29,8 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
 @property(nonatomic, assign)  BOOL             shouldForwardAppearanceAndRotationMethodsToChildViewControllers;
 
 - (void)performSelectorOnDelegate:(SEL)aSelector withObject:(id)param1 andObject:(id)param2;
+- (void)performSelector:(SEL)aSelector onViewController:(id)viewController;
+
 - (void)initaliseContainerViews;
 - (void)layoutBarButtons;
 - (void)barButtonReceivedTouchDown:(UIButton *)sender;
@@ -132,7 +134,6 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
 
 - (void)setBarButtons:(NSArray *)barButtons
      onScrollBarPages:(NSArray *)pageNumbers
-    withDefaultButton:(UIButton *)defaultButton
 {
     NSAssert([barButtons count] == [pageNumbers count], @"barButton and pageNumber arrays must contain the same number of objects");
     for (UIButton *barButton in barButtons) {
@@ -148,7 +149,6 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
     NSMutableArray *numbers = [NSMutableArray arrayWithArray:pageNumbers];
     [numbers sortUsingDescriptors:[NSArray arrayWithObject:ascending]];
     self.scrollBarPageSet = [NSOrderedSet orderedSetWithArray:numbers];
-    self.selectedViewController = [self viewControllerForButton:defaultButton];
     self.barButtons = barButtons;
     self.scrollBarPageArray = pageNumbers;
 
@@ -172,11 +172,18 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
     self.selectedScrollBarPage = pageNumber;
 }
 
-- (void)selectViewController:(UIViewController *)childViewController
+- (void)selectViewController:(UIViewController *)childViewController invokeSelector:(SEL)selector
 {
-    [self transitionFromViewController:self.selectedViewController toViewController:childViewController duration:0 options:UIViewAnimationTransitionNone animations:^{} completion:^(BOOL finished) {
+    if (!self.selectedViewController)
         self.selectedViewController = childViewController;
-    }];
+    else
+        [self transitionFromViewController:self.selectedViewController toViewController:childViewController duration:0 options:UIViewAnimationTransitionNone animations:^{} completion:^(BOOL finished) {
+            self.selectedViewController = childViewController;
+        }];
+    
+    if (selector)
+        [self performSelector:selector onViewController:childViewController];
+
 }
 
 - (void)setFullScreenMode:(BOOL)moveToFullScreen animated:(BOOL)animated
@@ -212,6 +219,12 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
 
 
 #pragma mark - Private methods
+
+- (void)performSelector:(SEL)aSelector onViewController:(id)viewController;
+{
+    if ([viewController respondsToSelector:aSelector])
+        objc_msgSend(viewController, aSelector, viewController); // performSelector: generates compiler warnings under ARC
+}
 
 - (void)performSelectorOnDelegate:(SEL)aSelector withObject:(id)param1 andObject:(id)param2;
 {
@@ -303,7 +316,10 @@ static  BOOL    const   kDefaultScrollBarShouldAlwaysBounce = YES;
     if (targetViewController) {
         // If the target isn't the current viewController, transition to the new view
         if (![self.selectedViewController isEqual:targetViewController])
-            [self selectViewController:targetViewController];
+            
+            // Leave the invocation of the selector for the touch up inside event
+            // TODO: This creates a weird visual effect: switching the controller on the touch down, then executing the selector on the touch up. Fix! 
+            [self selectViewController:targetViewController invokeSelector:nil];
 
         if (selector) {
             // If we have a targetViewController AND a selector for the button, assign them to the UIControlEventTouchUpInside
